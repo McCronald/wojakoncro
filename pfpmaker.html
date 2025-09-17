@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wojak PFP Maker</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      background-image: url('wojak11.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .top-text {
+      position: absolute;
+      top: 789px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 42px;
+      font-weight: bold;
+      text-align: center;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .panels {
+      display: flex;
+      gap: 20px;
+      margin: 20px;
+    }
+
+    .panel {
+      border: 3px solid white;
+      border-radius: 12px;
+      padding: 20px;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .panel-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-align: center;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 100px);
+      gap: 15px;
+    }
+
+    .grid img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border: 2px solid white;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .grid img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 12px rgba(255,255,255,0.8);
+    }
+
+    .right-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 90px;
+    }
+
+    .right-image {
+      position: relative;
+      border: 4px solid white;
+      border-radius: 12px;
+      padding: 6px;
+      background: rgba(0,0,0,0.3);
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 450px;
+      height: 600px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .background-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .background-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .base-layer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .base-layer img {
+      max-width: 400px;
+      z-index: 1;
+      border-radius: 8px;
+      margin-top: 200px;
+    }
+
+    .clothes-layer,
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+    }
+
+    .draggable {
+      position: absolute;
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-text">MAKE YOUR OWN WOJAK PFP</div>
+
+  <div class="panels">
+    <!-- Accessories -->
+    <div class="panel">
+      <div class="panel-title">ACCESSORIES</div>
+      <div class="grid">
+        <img src="cigarette1.png" onclick="toggleImage('cigarette1','accessory')">
+        <img src="hat4.png" onclick="toggleImage('hat4','accessory')">
+        <img src="moustache5.png" onclick="toggleImage('moustache5','accessory')">
+        <img src="glasses1.png" onclick="toggleImage('glasses1','accessory')">
+        <img src="chain1.png" onclick="toggleImage('chain1','accessory')">
+        <img src="hat1.png" onclick="toggleImage('hat1','accessory')">
+        <img src="hat2.png" onclick="toggleImage('hat2','accessory')">
+        <img src="buksna1.png" onclick="toggleImage('buksna1','accessory')">
+      </div>
+    </div>
+
+    <!-- Clothes -->
+    <div class="panel">
+      <div class="panel-title">CLOTHES</div>
+      <div class="grid">
+        <img src="tshirt1.png" onclick="toggleImage('tshirt1','clothes')">
+        <img src="tshirt2.png" onclick="toggleImage('tshirt2','clothes')">
+        <img src="tshirt3.png" onclick="toggleImage('tshirt3','clothes')">
+        <img src="tshirt4.png" onclick="toggleImage('tshirt4','clothes')">
+        <img src="tshirt5.png" onclick="toggleImage('tshirt5','clothes')">
+        <img src="tshirt6.png" onclick="toggleImage('tshirt6','clothes')">
+        <img src="tshirt7.png" onclick="toggleImage('tshirt7','clothes')">
+        <img src="tshirt8.png" onclick="toggleImage('tshirt8','clothes')">
+        <img src="tshirt9.png" onclick="toggleImage('tshirt9','clothes')">
+      </div>
+    </div>
+
+    <!-- Background -->
+    <div class="panel">
+      <div class="panel-title">BACKGROUND</div>
+      <div class="grid">
+        <img src="background1.jpg" onclick="toggleImage('background1','background')">
+        <img src="background2.jpg" onclick="toggleImage('background2','background')">
+        <img src="background3.jpg" onclick="toggleImage('background3','background')">
+        <img src="background4.jpg" onclick="toggleImage('background4','background')">
+        <img src="background5.jpg" onclick="toggleImage('background5','background')">
+        <img src="background6.jpg" onclick="toggleImage('background6','background')">
+        <img src="background7.jpg" onclick="toggleImage('background7','background')">
+        <img src="background8.jpg" onclick="toggleImage('background8','background')">
+        <img src="background9.jpg" onclick="toggleImage('background9','background')">
+        <img src="background10.jpg" onclick="toggleImage('background10','background')">
+      </div>
+    </div>
+  </div>
+
+  <div class="right-section">
+    <div class="right-image" id="wojak-container">
+      <div class="background-layer" id="background-layer"></div>
+      <div class="base-layer"><img src="wojak10.png" alt="Wojak"></div>
+      <div class="clothes-layer" id="clothes-layer"></div>
+      <div class="overlay" id="overlay"></div>
+    </div>
+  </div>
+
+  <script>
+    const anchors = {
+      cigarette1: { top: 414, left: 280, width: 100 },
+      hat4: { top: 72, left: 125, width: 300 },
+      moustache5: { top: 330, left: 210, width: 160 },
+      glasses1: { top: 280, left: 190, width: 220 },
+      chain1: { top: 449, left: 92, width: 280 },
+      hat1: { top: 67, left: 112, width: 280 },
+      hat2: { top: 85, left: 139, width: 260},
+      buksna1: { top: 414, left: 289, width: 100 },
+      tshirt1: { top: 465, left: 33, width: 400 },
+      tshirt2: { top: 465, left: 33, width: 400 },
+      tshirt3: { top: 465, left: 33, width: 400 },
+      tshirt4: { top: 465, left: 33, width: 400 },
+      tshirt5: { top: 465, left: 33, width: 400 },
+      tshirt6: { top: 465, left: 33, width: 400 },
+      tshirt7: { top: 465, left: 33, width: 400 },
+      tshirt8: { top: 465, left: 33, width: 400 },
+      tshirt9: { top: 465, left: 33, width: 400 }
+    };
+
+    function toggleImage(name, type) {
+      const container = {
+        accessory: document.getElementById('overlay'),
+        clothes: document.getElementById('clothes-layer'),
+        background: document.getElementById('background-layer')
+      }[type];
+
+      const existing = container.querySelector(`.${name}`);
+      if (existing) { existing.remove(); return; }
+
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('draggable', name);
+
+      const img = document.createElement('img');
+      img.src = name + (type === 'background' ? ".jpg" : ".png");
+      img.style.objectFit = type === "background" ? "cover" : "contain";
+
+      if (type === "background") {
+        wrapper.style.width = "100%";
+        wrapper.style.height = "100%";
+        wrapper.appendChild(img);
+        container.innerHTML = "";
+        container.appendChild(wrapper);
+      } else {
+        const pos = anchors[name] || { top: 0, left: 0, width: 200 };
+        wrapper.style.top = pos.top + "px";
+        wrapper.style.left = pos.left + "px";
+        img.style.width = pos.width + "px";
+        img.style.height = "auto";
+        wrapper.appendChild(img);
+        container.appendChild(wrapper);
+        makeDraggable(wrapper);
+      }
+    }
+
+    function makeDraggable(el) {
+      let offsetX, offsetY, isDown = false;
+
+      el.addEventListener('mousedown', function(e) {
+        isDown = true;
+        offsetX = e.offsetX;
+        offsetY = e.offsetY;
+      });
+
+      document.addEventListener('mouseup', () => isDown = false);
+
+      document.addEventListener('mousemove', function(e) {
+        if (isDown) {
+          const rect = document.getElementById('wojak-container').getBoundingClientRect();
+          el.style.left = (e.clientX - rect.left - offsetX) + "px";
+          el.style.top = (e.clientY - rect.top - offsetY) + "px";
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

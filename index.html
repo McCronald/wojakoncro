@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wojak Landing Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      width: 100%;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left side container */
+    .left-container {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 20px;
+    }
+
+    .left-container img {
+      width: 700px;
+      margin-bottom: 50px;
+    }
+
+    .left-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .left-buttons button {
+      background: rgba(0,0,0,0.6);
+      color: white;
+      font-size: 22px;
+      padding: 12px 25px;
+      border: 2px solid white;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .left-buttons button:hover {
+      background: white;
+      color: black;
+    }
+
+    /* Right side container */
+    .right-container {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding-right: 50px;
+    }
+
+    .right-container img {
+      width: 620px;
+      border-radius: 12px;
+    }
+
+    /* Buttons on Wojak */
+    .wojak-buttons {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Bottom border / notification bar */
+    .bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 12px 20px;
+      background: rgba(0,0,0,0.7);
+      border-top: 2px solid white;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    .bottom-bar span {
+      font-weight: bold;
+    }
+
+    /* Custom clickable buttons (invisible) */
+    .custom-btn {
+      position: absolute; /* so you can adjust anywhere */
+      background: transparent; /* invisible background */
+      color: transparent; /* invisible text */
+      border: none; /* no border */
+      cursor: pointer;
+      padding: 12px 25px;
+      font-size: 16px;
+    }
+
+    /* Example initial positions */
+    #button1 {
+      top: 280px;
+      left: 120px;
+    }
+
+    #button2 {
+      top: 300px;
+      left: 530px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Left side -->
+  <div class="left-container">
+    <img src="wojak6.jpg" alt="Wojak Left">
+    <div class="left-buttons">
+      <button onclick="window.location.href='aboutus.html'">ABOUT US</button>
+      <button onclick="window.location.href='tokenomics.html'">TOKENOMICS</button>
+      <button onclick="window.location.href='pfpmaker.html'">PFP MAKER</button>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="right-container">
+    <img src="Wojak_cropped.jpg" alt="Wojak Right">
+    <div class="wojak-buttons"></div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <span>This is a parody. Nothing to do with the real Wojak. Made by WojakOnCro.</span>
+  </div>
+
+  <!-- Custom movable buttons (invisible but clickable) -->
+  <button class="custom-btn" id="button1" onclick="window.open('https://x.com/WojakOnCro?t=me5BB-lCZLIUM_Mrp2LO8A&s=09','_blank')">Button 1</button>
+  <button class="custom-btn" id="button2" onclick="window.open('https://t.me/wojakoncro','_blank')">Button 2</button>
+
+</body>
+</html>
