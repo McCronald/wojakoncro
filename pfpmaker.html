@@ -140,6 +140,22 @@
       position: absolute;
       cursor: move;
     }
+
+    .download-btn {
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border: 2px solid white;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      cursor: pointer;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .download-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
   </style>
 </head>
 <body>
@@ -151,7 +167,7 @@
     <div class="panel">
       <div class="panel-title">ACCESSORIES</div>
       <div class="grid">
-        <img src="Cigarette1.png" onclick="toggleImage('Cigarette1','accessory')">
+        <img src="cigarette1.png" onclick="toggleImage('cigarette1','accessory')">
         <img src="hat4.png" onclick="toggleImage('hat4','accessory')">
         <img src="moustache5.png" onclick="toggleImage('moustache5','accessory')">
         <img src="glasses1.png" onclick="toggleImage('glasses1','accessory')">
@@ -203,11 +219,12 @@
       <div class="clothes-layer" id="clothes-layer"></div>
       <div class="overlay" id="overlay"></div>
     </div>
+    <button class="download-btn" onclick="downloadPFP()">Download PFP</button>
   </div>
 
   <script>
     const anchors = {
-      Cigarette1: { top: 414, left: 280, width: 100 },
+      cigarette1: { top: 414, left: 280, width: 100 },
       hat4: { top: 72, left: 125, width: 300 },
       moustache5: { top: 330, left: 210, width: 160 },
       glasses1: { top: 280, left: 190, width: 220 },
@@ -280,8 +297,21 @@
         }
       });
     }
+
+    // === FIXED download button for local files ===
+    function downloadPFP() {
+      const container = document.getElementById('wojak-container');
+      html2canvas(container, {allowTaint: true, useCORS: false}).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'wojak_pfp.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }).catch(err => {
+        console.error("Error capturing PFP:", err);
+        alert("Error capturing PFP. Make sure images are in the same folder as the HTML file.");
+      });
+    }
   </script>
 
 </body>
 </html>
-
