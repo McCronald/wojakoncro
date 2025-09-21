@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wojak Landing Page</title>
   <style>
     * {
@@ -11,7 +12,7 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       height: 100vh;
       width: 100%;
       background-image: url('background.jpg');
@@ -25,45 +26,94 @@
       overflow: hidden;
     }
 
-    /* Left side container */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+      z-index: 0;
+    }
+
+    .navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background: rgba(0,0,0,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      z-index: 2;
+    }
+
+    .navbar h2 {
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #00f5ff;
+      text-shadow: 0 0 8px rgba(0,255,255,0.8);
+    }
+
     .left-container {
       width: 50%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      padding-left: 20px;
+      padding-left: 40px;
+      z-index: 1;
     }
 
     .left-container img {
       width: 700px;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
+    }
+
+    .hero-text h1 {
+      font-size: 50px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #00f5ff, #ff00d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 12px rgba(0,0,0,0.6);
+    }
+
+    .hero-text p {
+      font-size: 20px;
+      margin-bottom: 35px;
+      opacity: 0.9;
+      max-width: 480px;
+      line-height: 1.4;
     }
 
     .left-buttons {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
       align-items: flex-start;
     }
 
     .left-buttons button {
-      background: rgba(0,0,0,0.6);
+      background: linear-gradient(90deg, #00f5ff, #ff00d4);
       color: white;
-      font-size: 22px;
-      padding: 12px 25px;
-      border: 2px solid white;
-      border-radius: 12px;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 12px 26px;
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
+      box-shadow: 0 0 15px rgba(0,255,255,0.5);
       transition: all 0.3s;
     }
 
     .left-buttons button:hover {
-      background: white;
-      color: black;
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(255,0,200,0.8);
     }
 
-    /* Right side container */
     .right-container {
       width: 50%;
       display: flex;
@@ -71,68 +121,132 @@
       align-items: center;
       position: relative;
       padding-right: 50px;
+      z-index: 1;
     }
 
     .right-container img {
       width: 620px;
       border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
 
-    /* Buttons on Wojak */
-    .wojak-buttons {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    /* Bottom border / notification bar */
     .bottom-bar {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 12px 20px;
-      background: rgba(0,0,0,0.7);
-      border-top: 2px solid white;
+      padding: 14px 20px;
+      background: rgba(0,0,0,0.8);
+      border-top: 1px solid rgba(255,255,255,0.3);
       text-align: center;
-      font-size: 18px;
+      font-size: 16px;
       letter-spacing: 1px;
+      z-index: 2;
     }
 
     .bottom-bar span {
       font-weight: bold;
     }
 
-    /* Custom clickable buttons (invisible) */
     .custom-btn {
-      position: absolute; /* so you can adjust anywhere */
-      background: transparent; /* invisible background */
-      color: transparent; /* invisible text */
-      border: none; /* no border */
+      position: absolute;
+      background: transparent;
+      color: transparent;
+      border: none;
       cursor: pointer;
-      padding: 12px 25px;
-      font-size: 16px;
+      width: 80px;
+      height: 96px;
+      z-index: 3;
     }
 
-    /* Example initial positions */
     #button1 {
-      top: 280px;
-      left: 120px;
+      top: 215px;
+      left: 150px;
     }
 
     #button2 {
-      top: 300px;
-      left: 530px;
+      top: 215px;
+      left: 580px;
     }
 
+    /* --------- MOBILE FIXES ONLY --------- */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto;
+        height: auto;
+      }
+
+      .left-container, .right-container {
+        width: 100%;
+        padding: 20px;
+        align-items: center;
+        text-align: center;
+      }
+
+      .left-container img,
+      .right-container img {
+        width: 90%;
+        max-width: 400px;
+        height: auto;
+      }
+
+      .hero-text h1 {
+        font-size: 28px;
+      }
+
+      .hero-text p {
+        font-size: 16px;
+        max-width: 90%;
+      }
+
+      .left-buttons {
+        align-items: center;
+      }
+
+      .left-buttons button {
+        font-size: 16px;
+        width: 80%;
+        text-align: center;
+      }
+
+      .custom-btn {
+        width: 60px;
+        height: 70px;
+      }
+
+      #button1, #button2 {
+        top: auto;
+        bottom: 90px;
+      }
+
+      #button1 { left: 25%; }
+      #button2 { left: 60%; }
+    }
+
+    @media (max-width: 480px) {
+      .navbar h2 { font-size: 20px; }
+      .hero-text h1 { font-size: 22px; }
+      .hero-text p { font-size: 14px; }
+      .left-buttons button { font-size: 14px; padding: 10px; }
+      .bottom-bar { font-size: 12px; padding: 10px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Left side -->
+  <div class="navbar">
+    <h2>WOJAK ON CRO</h2>
+  </div>
+
   <div class="left-container">
     <img src="wojak6.jpg" alt="Wojak Left">
+    <div class="hero-text">
+      <h1>Join the Wojak Revolution</h1>
+      <p>A parody project uniting memes, fun, and community. Built on Cronos.</p>
+    </div>
     <div class="left-buttons">
       <button onclick="window.location.href='aboutus.html'">ABOUT US</button>
       <button onclick="window.location.href='tokenomics.html'">TOKENOMICS</button>
@@ -140,20 +254,16 @@
     </div>
   </div>
 
-  <!-- Right side -->
   <div class="right-container">
     <img src="Wojak_cropped.jpg" alt="Wojak Right">
-    <div class="wojak-buttons"></div>
   </div>
 
-  <!-- Bottom bar -->
   <div class="bottom-bar">
     <span>This is a parody. Nothing to do with the real Wojak. Made by WojakOnCro.</span>
   </div>
 
-  <!-- Custom movable buttons (invisible but clickable) -->
-  <button class="custom-btn" id="button1" onclick="window.open('https://x.com/WojakOnCro?t=me5BB-lCZLIUM_Mrp2LO8A&s=09','_blank')">Button 1</button>
-  <button class="custom-btn" id="button2" onclick="window.open('https://t.me/wojakoncro','_blank')">Button 2</button>
+  <button class="custom-btn" id="button1" onclick="window.open('https://x.com/WojakOnCro','_blank')">X</button>
+  <button class="custom-btn" id="button2" onclick="window.open('https://t.me/wojakoncro','_blank')">TG</button>
 
 </body>
 </html>
