@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wojak PFP Maker</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
@@ -156,6 +157,61 @@
     .download-btn:hover {
       background: rgba(255,255,255,0.2);
     }
+
+    /* -------- MOBILE FIXES ONLY -------- */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto; /* prevents blank space at bottom */
+      }
+
+      .panels {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, 80px);
+      }
+
+      .grid img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .right-section {
+        margin: 40px 10px;
+        width: 100%;
+      }
+
+      .right-image {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+      }
+
+      .base-layer img {
+        max-width: 80%;
+        margin-top: 100px;
+      }
+
+      .top-text {
+        position: relative;
+        top: auto;
+        margin: 20px 0;
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .panel-title { font-size: 18px; }
+      .grid { grid-template-columns: repeat(2, 70px); gap: 10px; }
+      .grid img { width: 70px; height: 70px; }
+      .download-btn { font-size: 14px; padding: 8px 14px; }
+      .top-text { font-size: 20px; }
+    }
   </style>
 </head>
 <body>
@@ -167,7 +223,7 @@
     <div class="panel">
       <div class="panel-title">ACCESSORIES</div>
       <div class="grid">
-        <img src="Cigarette1.png" onclick="toggleImage('Cigarette1','accessory')">
+        <img src="cigarette1.png" onclick="toggleImage('cigarette1','accessory')">
         <img src="hat4.png" onclick="toggleImage('hat4','accessory')">
         <img src="moustache5.png" onclick="toggleImage('moustache5','accessory')">
         <img src="glasses1.png" onclick="toggleImage('glasses1','accessory')">
@@ -224,7 +280,7 @@
 
   <script>
     const anchors = {
-      Cigarette1: { top: 414, left: 280, width: 100 },
+      cigarette1: { top: 414, left: 280, width: 100 },
       hat4: { top: 72, left: 125, width: 300 },
       moustache5: { top: 330, left: 210, width: 160 },
       glasses1: { top: 280, left: 190, width: 220 },
@@ -298,7 +354,6 @@
       });
     }
 
-    // === FIXED download button for local files ===
     function downloadPFP() {
       const container = document.getElementById('wojak-container');
       html2canvas(container, {allowTaint: true, useCORS: false}).then(canvas => {
@@ -315,4 +370,3 @@
 
 </body>
 </html>
-
