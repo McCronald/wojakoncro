@@ -6,79 +6,112 @@
   <style>
     body {
       margin: 0;
-      padding: 40px;
+      padding: 0;
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #000428, #004e92);
       color: white;
-      text-align: left;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+      align-items: center;
     }
 
+    /* Neon Gradient Heading */
     h1 {
-      font-size: 24px;
-      line-height: 1.6;
+      font-size: 60px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00f5ff, #ff00d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      margin: 40px 0 20px;
+      text-align: center;
+      letter-spacing: 3px;
     }
 
+    /* Text Box */
+    .content {
+      max-width: 850px;
+      margin: 20px auto;
+      padding: 25px 35px;
+      font-size: 20px;
+      line-height: 1.7;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 255, 200, 0.2);
+    }
+
+    /* Wojak Images Row */
     .image-row {
       display: flex;
-      gap: 15px;
-      margin-top: 30px;
+      justify-content: center;
+      gap: 30px;
+      margin: 50px 0;
       flex-wrap: wrap;
-      justify-content: flex-start;
-      padding-left: 40px;
     }
 
-    .image-row img {
-      flex: 1 1 20%;
-      max-width: 18%;
-      height: auto;
-      border-radius: 10px;
+    .image-card {
+      width: 130px;
+      height: 130px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .disclaimer {
-      margin-top: 40px;
-      padding: 15px;
-      border: 2px solid white;
+    .image-card img {
+      width: 100%;
+      height: 100%;
       border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .image-card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(255, 0, 200, 0.9);
+    }
+
+    /* Footer */
+    footer {
       text-align: center;
       font-size: 14px;
-      opacity: 0.85;
-    }
-
-    a button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 2px solid white;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    a button:hover {
-      background: rgba(255, 255, 255, 0.4);
-      transform: scale(1.05);
+      padding: 20px;
+      opacity: 0.7;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <h1>
-    Wojak aka Feels guy is the most famous internet character. That’s the guy we can all relate to. Now he is on a mission to bring memecoin season back to Cronos and unite all under one flag. To remind all of us, only those who are patient will win in the end. Join us on our mission to make Cronos and Wojak an unstoppable force.
-  </h1>
 
-  <!-- Six images side by side -->
+  <!-- Title -->
+  <h1>About Us</h1>
+
+  <!-- Paragraph in Box -->
+  <div class="content">
+    <p>Wojak aka Feels guy is the most famous internet character. That’s the guy we can all relate to.</p>
+    <p>Now he is on a mission to bring memecoin season back to Cronos and unite all under one flag.</p>
+    <p>To remind all of us, only those who are patient will win in the end. Join us on our mission to make Cronos and Wojak an unstoppable force.</p>
+  </div>
+
+  <!-- Wojak Images in Cards -->
   <div class="image-row">
-    <img src="wojak.jpg" alt="Wojak Image">
-    <img src="wojak1.jpg" alt="Wojak1 Image">
-    <img src="wojak2.jpg" alt="Wojak2 Image">
-    <img src="wojak3.jpg" alt="Wojak3 Image">
-    <img src="wojak4.jpg" alt="Wojak4 Image">
-   
+    <div class="image-card"><img src="wojak.jpg" alt="Wojak"></div>
+    <div class="image-card"><img src="wojak1.jpg" alt="Wojak1"></div>
+    <div class="image-card"><img src="wojak2.jpg" alt="Wojak2"></div>
+    <div class="image-card"><img src="wojak3.jpg" alt="Wojak3"></div>
+    <div class="image-card"><img src="wojak4.jpg" alt="Wojak4"></div>
   </div>
 
-
-    
-  </div>
+  <!-- Footer -->
+  <footer>
+    © 2025 Wojak on Cronos – Unstoppable Together
+  </footer>
 
 </body>
 </html>
