@@ -1,54 +1,227 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>TOKENOMICS</title>
-  <!-- Google Font for stylish bold text -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tokenomics — Neon Card</title>
+
+  <!-- Google font for a bold, playful headline -->
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Cinzel', serif;
-      background: url('TOKEN.jpg') center center / cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    :root{
+      --bg-grad-a: #0b0510;
+      --neon-outer: #5b3bff;
+      --neon-inner: #7b4bff;
+      --accent: #ffb86b;
+      --card-bg: rgba(12,12,18,0.48);
+      --glow-strong: 0 0 30px rgba(123,75,255,0.9), 0 0 60px rgba(91,59,255,0.55);
+      --glow-soft: 0 0 14px rgba(123,75,255,0.55);
+      --text-color: #f3f6ff;
+      --muted: rgba(243,246,255,0.85);
+      --neon-border: rgba(73,42,255,0.9);
     }
 
-    .token-text {
-      font-size: 4.5vw; /* smaller letters for full visibility */
-      font-weight: 900;
+    * {box-sizing: border-box}
+    html,body {height:100%; margin:0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10,6,15,0.65), rgba(10,6,15,0.85)),
+                  url('BACKGROUNDTRUMP.jpg') center/cover no-repeat;
+      filter: saturate(0.85) contrast(0.9);
+      z-index: -2;
+    }
+
+    .color-tint {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(600px 400px at 50% 20%, rgba(123,75,255,0.16), transparent 20%),
+                  linear-gradient(180deg, rgba(75,20,160,0.08), rgba(0,0,0,0.35));
+      z-index: -1;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .wrap {
+      min-height:100dvh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    .card-wrap {
+      width: min(980px, 94%);
+      max-width: 1100px;
+      text-align:center;
+    }
+
+    .neon-title {
+      font-family: "Bungee", cursive;
+      font-size: clamp(40px, 6vw, 96px);
+      letter-spacing: 6px;
+      color: var(--neon-inner);
       text-transform: uppercase;
-      color: #ff4500;
-      text-shadow: 
-        0 0 2px #fff,
-        0 0 4px #ff4500,
-        0 0 6px #ff6347,
-        0 0 10px #ff4500;
-      animation: flicker 2s infinite alternate;
-      margin: 0.4em 0;
-      letter-spacing: 1px;
+      margin: 0 0 18px;
+      line-height: 0.9;
+      text-shadow:
+        0 0 6px rgba(123,75,255,0.7),
+        0 0 20px rgba(91,59,255,0.55),
+        0 2px 0 rgba(0,0,0,0.35);
+      -webkit-text-stroke: 1px rgba(0,0,0,0.25);
+      filter: drop-shadow(0 8px 30px rgba(91,59,255,0.20));
     }
 
-    @keyframes flicker {
-      0% { text-shadow: 0 0 2px #fff, 0 0 4px #ff4500, 0 0 6px #ff6347, 0 0 10px #ff4500; }
-      50% { text-shadow: 0 0 3px #fff, 0 0 6px #ff4500, 0 0 9px #ff6347, 0 0 12px #ff4500; }
-      100% { text-shadow: 0 0 2px #fff, 0 0 4px #ff4500, 0 0 6px #ff6347, 0 0 10px #ff4500; }
+    .neon-card {
+      margin: 0 auto;
+      border-radius: 18px;
+      padding: clamp(18px, 2.6vw, 36px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: inset 0 0 60px rgba(11,6,20,0.5), 0 12px 40px rgba(8,6,12,0.6);
+      backdrop-filter: blur(6px) saturate(1.15);
+      border: 2px solid rgba(255,255,255,0.03);
+      position: relative;
+      overflow: visible;
+    }
+
+    .neon-card::before {
+      content:"";
+      position:absolute; inset: -10px;
+      border-radius: 22px;
+      pointer-events:none;
+      background: linear-gradient(90deg, rgba(91,59,255,0.06), rgba(123,75,255,0.04));
+      box-shadow: 0 0 30px rgba(123,75,255,0.18), 0 0 60px rgba(91,59,255,0.12);
+      z-index: -1;
+    }
+
+    .neon-frame {
+      border-radius: 14px;
+      padding: clamp(18px,2.2vw,28px);
+      border: 3px solid var(--neon-border);
+      box-shadow: var(--glow-strong);
+      background: linear-gradient(180deg, rgba(20,10,30,0.25), rgba(6,4,8,0.2));
+    }
+
+    .row {
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding: 12px 8px;
+      border-radius: 10px;
+      transition: transform .16s ease;
+    }
+    .row + .row { margin-top: 8px; }
+
+    .icon {
+      width:46px;
+      height:46px;
+      flex: 0 0 46px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius: 10px;
+      box-shadow: var(--glow-soft);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .label {
+      text-align:left;
+      color: var(--text-color);
+      font-weight: 800;
+      font-size: clamp(16px, 2vw, 28px);
+      letter-spacing: .6px;
+    }
+
+    @media (min-width:720px){
+      .neon-card { padding: 44px; }
+      .neon-frame { padding: 28px 36px; }
+      .row { gap: 22px; }
+    }
+
+    .icon svg { width:28px; height:28px; }
+    .icon.money { color: #51e6b0; filter: drop-shadow(0 4px 14px rgba(81,230,176,0.14)); }
+    .icon.scroll { color: #9be7ff; filter: drop-shadow(0 4px 14px rgba(155,231,255,0.12)); }
+    .icon.party { color: #ffd47a; filter: drop-shadow(0 4px 14px rgba(255,212,122,0.12)); }
+    .icon.fire { color: #ff7b7b; filter: drop-shadow(0 4px 14px rgba(255,123,123,0.12)); }
+
+    .label .muted { display:block; font-weight:600; color: var(--muted); font-size: .82em; margin-top:4px; letter-spacing:0; }
+
+    /* MOBILE FIXES */
+    @media (max-width:600px){
+      .wrap { padding: 16px; }
+      .neon-card { padding: 20px; }
+      .row { flex-direction: column; align-items: flex-start; gap:10px; }
+      .icon { width:40px; height:40px; }
+      .icon svg { width:22px; height:22px; }
+      .label { font-size: 15px; text-align:left; }
     }
   </style>
 </head>
 <body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="color-tint" aria-hidden="true"></div>
 
-  <div class="token-text">TOTAL SUPPLY 1,000,000,000</div>
-  <div class="token-text">CONTRACT RENOUNCED</div>
-  <div class="token-text">FAIR LAUNCH ON PUUSH.FUN</div>
-  <div class="token-text">LP BURNED</div>
+  <main class="wrap" role="main" aria-labelledby="tokenomics-title">
+    <div class="card-wrap">
+      <h1 id="tokenomics-title" class="neon-title" aria-hidden="false">TOKENOMICS</h1>
 
+      <section class="neon-card" aria-label="Tokenomics details">
+        <div class="neon-frame" role="list">
+
+          <div class="row" role="listitem">
+            <div class="icon money" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C10.9 2 10 2.9 10 4v.4C8.2 4.6 6.9 6 6.3 7.7 4.5 9 3 11.3 3 14c0 3.9 3.1 7 7 7h4c3.9 0 7-3.1 7-7 0-2.7-1.5-5-3.3-6.3C17.1 6 15.8 4.6 14 4.4V4c0-1.1-.9-2-2-2zM12 7c1.7 0 3 1.3 3 3s-1.3 2.7-3 2.7S9 11.7 9 10s1.3-3 3-3z"/>
+              </svg>
+            </div>
+            <div class="label">
+              TOTAL SUPPLY: 1,000,000,000
+              <span class="muted">Fixed supply • no hidden mint</span>
+            </div>
+          </div>
+
+          <div class="row" role="listitem">
+            <div class="icon scroll" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M4 3h12a1 1 0 0 1 1 1v2h2v12l-4-1-4 1-4-1-4 1V4a1 1 0 0 1 1-1zM6 6v11.2c.77-.06 1.67-.2 2.5-.2C11.2 17 12 17 12 17s.8 0 3.5.04C17.33 17.04 18.23 17.18 19 17.24V6H6z" />
+              </svg>
+            </div>
+            <div class="label">
+              CONTRACT: RENOUNCED
+              <span class="muted">No owner privileges • community trust</span>
+            </div>
+          </div>
+
+          <div class="row" role="listitem">
+            <div class="icon party" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M21 7l-1.5-1.5L18 7l1 1-1.5 1.5 1.5 1.5L21 10l1-1-1-2zM3 3l1.2 1.2L5 3l1 1-1.2 1.2L6 6 5 7 3.8 5.8 2.6 7 2 6 3 5 .8 3.8 1 3l2 0zM7 15l.7-2L11 9l4 4-3 3-4 1-1-2z"/>
+              </svg>
+            </div>
+            <div class="label">
+              FAIR LAUNCH, PUSH FUN
+              <span class="muted">Community-first • no presale</span>
+            </div>
+          </div>
+
+          <div class="row" role="listitem">
+            <div class="icon fire" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2s-3.5 4-3.5 7.5C8.5 12.3 10 14 12 14s3.5-1.7 3.5-4.5C15.5 6 12 2 12 2zM6 13.5C6 16 8 18 11 19v2c-4-1-6-4-6-7.5z"/>
+              </svg>
+            </div>
+            <div class="label">
+              LP: BURNED
+              <span class="muted">Liquidity permanently locked/burned</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </main>
 </body>
 </html>
